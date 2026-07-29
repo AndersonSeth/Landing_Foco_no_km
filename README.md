@@ -1,24 +1,46 @@
-# Foco no KM — Landing / Mídia Kit
+# Foco no KM — Landing page / Mídia Kit
 
-Site estático de um arquivo só. Não precisa de build, npm nem framework.
+Site estático de arquivo único. Sem build, sem npm, sem framework.
+Publicado via **GitHub Pages** em https://foconokm.com.br
 
 ## Arquivos
-- `index.html` — a página inteira (CSS e fotos embutidos)
-- `og-cover.jpg` — imagem que aparece no preview ao compartilhar o link
-- `robots.txt`
 
-## Antes de publicar
-Abra `index.html` e troque **`foconokm.com.br`** pelo seu domínio real.
-São 5 ocorrências, todas no topo do arquivo (bloco "EDITE AQUI").
-No VS Code: Ctrl+H (Cmd+H no Mac), localizar `foconokm.com.br`, substituir por todos.
+| Arquivo | O que é |
+|---|---|
+| `index.html` | A página inteira — CSS, fontes e fotos embutidos |
+| `og-cover.jpg` | Imagem do preview ao compartilhar o link (WhatsApp, Instagram DM, LinkedIn) |
+| `Midia-Kit-Foco-no-KM.pdf` | Versão em PDF, 7 páginas A4 |
+| `robots.txt` | Libera indexação pelo Google |
+| `CNAME` | Criado pelo GitHub — **não editar nem apagar** |
 
-## Publicar no Cloudflare Pages (grátis)
-1. `git init` / commit / push para um repositório no GitHub
-2. Cloudflare > Workers & Pages > Create > Pages > Connect to Git
-3. Framework preset: **None**. Build command: vazio. Output directory: `/`
-4. Deploy
-5. Custom domains > Set up a domain > digite seu domínio (o DNS já está na Cloudflare, ele configura sozinho)
+## Publicar uma alteração
 
-## Testar local
-No VS Code, extensão **Live Server** > botão "Go Live".
+```bash
+git pull
+git add .
+git commit -m "descricao da alteracao"
+git push
+```
+
+O GitHub Pages republica sozinho em 1–2 minutos.
+
+## Testar antes de publicar
+VS Code → extensão **Live Server** → botão "Go Live".
 Ou: `python3 -m http.server 8000` e abrir http://localhost:8000
+
+## DNS (já configurado, só para referência)
+Registro.br → DNS → Editar Zona → Modo Avançado:
+
+- 4 registros **A** na raiz: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+- 1 registro **CNAME**: `www` → `andersonseth.github.io.`
+
+GitHub: Settings → Pages → Custom domain `foconokm.com.br` + **Enforce HTTPS** ligado.
+
+## Manutenção — o que atualizar a cada 3 meses
+Os números do kit são de jul/2026. Quando exportar novos insights, os pontos a trocar em `index.html`:
+
+- Bloco da capa: seguidores, views, contas alcançadas, múltiplo de alcance
+- Página "Boletim": as 6 métricas e as leituras
+- Página "Quem está do outro lado": gênero, faixa etária, cidades
+- Página "Segunda tela": views, retenção, horas de exibição do YouTube
+- Regerar o PDF: abrir o site no Chrome → Ctrl+P → Salvar como PDF → margens "Nenhuma" → marcar "Gráficos de segundo plano"
