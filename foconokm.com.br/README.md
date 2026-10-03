@@ -10,8 +10,14 @@ Publicado via **GitHub Pages** em https://foconokm.com.br
 | `index.html` | A página inteira — CSS, fontes e fotos embutidos |
 | `og-cover.jpg` | Imagem do preview ao compartilhar o link (WhatsApp, Instagram DM, LinkedIn) |
 | `Midia-Kit-Foco-no-KM.pdf` | Versão em PDF, 7 páginas A4 |
-| `robots.txt` | Libera indexação pelo Google |
+| `robots.txt` | Libera indexação pelo Google na raiz; bloqueia `/achadinhos/` |
 | `CNAME` | Criado pelo GitHub — **não editar nem apagar** |
+| `achadinhos/index.html` | Landing page de captura para tráfego pago → grupo de WhatsApp |
+| `achadinhos/capa-achadinhos.jpg` | Preview social só dessa página (não confundir com `og-cover.jpg` da raiz) |
+
+`robots.txt` só funciona na raiz do domínio — um arquivo dentro de uma subpasta é
+ignorado pelos buscadores. Por isso a regra que bloqueia `/achadinhos/` fica aqui,
+na raiz, e não dentro da própria pasta.
 
 ## Publicar uma alteração
 
