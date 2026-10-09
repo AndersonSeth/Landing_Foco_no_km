@@ -180,7 +180,7 @@ a:focus-visible{outline:3px solid #0B5FFF;outline-offset:2px}
     </div>
 
     <div class="aviso">
-      Alguns links são de afiliado: se você comprar por eles, posso receber uma comissão, sem custo extra para você. Preços e cupons podem mudar a qualquer momento nas lojas.
+      Alguns links são de afiliado: se você comprar por eles, posso receber uma comissão, sem custo extra para você. Preços e cupons podem mudar a qualquer momento nas lojas. Esta página usa cookies de métricas (Meta e Google) para medir resultados.
     </div>
   </main>
 
@@ -195,6 +195,45 @@ a:focus-visible{outline:3px solid #0B5FFF;outline-offset:2px}
 </div>
 
 <script>
+/* =====================================================================
+   MÉTRICAS — cole os seus IDs entre as aspas. Vazio = não carrega nada.
+   metaPixelId : número do Pixel (Gerenciador de Eventos da Meta), ex.: '123456789012345'
+   ga4Id       : ID de medição do Google Analytics 4, ex.: 'G-ABCDE12345'
+   ===================================================================== */
+var TRACKING = {
+  metaPixelId: '1721524095807507',
+  ga4Id: ''
+};
+
+(function () {
+  /* Meta Pixel */
+  if (TRACKING.metaPixelId) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', TRACKING.metaPixelId);
+    fbq('track', 'PageView');
+  }
+
+  /* Google Analytics 4 */
+  if (TRACKING.ga4Id) {
+    var g = document.createElement('script');
+    g.async = true;
+    g.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(TRACKING.ga4Id);
+    document.head.appendChild(g);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', TRACKING.ga4Id);
+  }
+
+  /* Clique em "Entrar no grupo": evento Lead no Meta e evento no GA4 */
+  document.querySelectorAll('.cta').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (window.fbq) { fbq('track', 'Lead'); }
+      if (window.gtag) { gtag('event', 'entrar_no_grupo', { event_category: 'conversao', event_label: 'whatsapp' }); }
+    });
+  });
+})();
+
 /* Depois do dia 10.10 o balão da campanha some sozinho. */
 (function () {
   var fim = new Date(2026, 9, 11, 0, 0, 0); /* mês 9 = outubro */
